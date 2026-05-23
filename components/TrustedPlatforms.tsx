@@ -6,10 +6,10 @@ const platforms = [
   "WordPress",
   "Wix",
   "Squarespace",
+  "Custom Code",
+  "SEO",
+  "Website Maintenance",
   "Webflow",
-  "Framer",
-  "WooCommerce",
-  "Next.js",
 ];
 
 export default function TrustedPlatforms() {

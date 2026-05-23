@@ -1,10 +1,19 @@
 "use client";
 import Image from "next/image";
-import { ArrowRight, Code, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, Code, Mail, MapPin, MessageCircle, MessageSquare, Phone } from "lucide-react";
 
 const footerLinks = {
-  Services: ["Shopify", "WordPress", "Wix", "Squarespace", "Redesigns", "SEO setup"],
-  Company: ["About", "Process", "Portfolio", "Contact"],
+  Services: [
+    "Shopify", "WordPress", "Wix", "Squarespace",
+    "Custom Code", "Full Stack Dev", "SEO & Growth",
+    "Website Maintenance", "Redesigns", "Landing Pages",
+  ],
+  Company: [
+    { label: "About", href: "/about" },
+    { label: "Process", href: "/process" },
+    { label: "Portfolio", href: "/work" },
+    { label: "Contact", href: "/contact" },
+  ],
   Resources: ["Free audit", "CMS guide", "SEO checklist", "Launch plan"],
 };
 
@@ -25,9 +34,18 @@ export default function Footer() {
               Professional software consulting and premium web development for modern businesses.
             </p>
             <div className="mt-6 space-y-3 text-sm text-white/48">
-              <p className="flex items-center gap-3"><Mail size={15} className="text-teal-300" /> hello@modulussoftware.com</p>
-              <p className="flex items-center gap-3"><Phone size={15} className="text-teal-300" /> +1 (555) 123-4567</p>
-              <p className="flex items-center gap-3"><MapPin size={15} className="text-teal-300" /> New York, NY - USA</p>
+              <p className="flex items-center gap-3"><Mail size={15} className="text-teal-300" /> akibbhuiyan3544@gmail.com</p>
+              <p className="flex items-center gap-3"><Phone size={15} className="text-teal-300" /> +88 01842638473</p>
+              <a
+                href="https://wa.me/8801842638473"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 transition hover:text-white"
+              >
+                <MessageCircle size={15} className="text-teal-300" />
+                WhatsApp: +88 01842638473
+              </a>
+              <p className="flex items-center gap-3"><MapPin size={15} className="text-teal-300" /> USA</p>
             </div>
           </div>
 
@@ -35,13 +53,19 @@ export default function Footer() {
             <div key={category}>
               <h4 className="text-sm font-black uppercase tracking-[0.14em] text-white">{category}</h4>
               <ul className="mt-5 space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-white/46 transition hover:text-white">
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {links.map((link) => {
+                  const isObj = typeof link === "object";
+                  return (
+                    <li key={isObj ? link.label : link}>
+                      <a
+                        href={isObj ? link.href : "#"}
+                        className="text-sm text-white/46 transition hover:text-white"
+                      >
+                        {isObj ? link.label : link}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/process" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -25,7 +26,21 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+
+    if (href.startsWith("/#")) {
+      const selector = href.replace("/", "");
+      const target = document.querySelector(selector);
+
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      window.location.href = href;
+      return;
+    }
+
+    window.location.href = href;
   };
 
   return (
@@ -42,7 +57,7 @@ export default function Navbar() {
       >
         <div className="mx-auto flex w-[min(1160px,calc(100%-2rem))] items-center justify-between">
           <button
-            onClick={() => handleNavClick("#hero")}
+            onClick={() => handleNavClick("/#hero")}
             className="flex items-center text-left"
             aria-label="Go to top"
           >
@@ -69,7 +84,7 @@ export default function Navbar() {
           </div>
 
           <button
-            onClick={() => handleNavClick("#contact")}
+            onClick={() => handleNavClick("/#contact")}
             className="hidden items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-[#08090d] transition hover:bg-teal-200 md:flex"
           >
             Book a Call
@@ -105,7 +120,7 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => handleNavClick("#contact")}
+              onClick={() => handleNavClick("/#contact")}
               className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-bold text-[#08090d]"
             >
               Book a Call

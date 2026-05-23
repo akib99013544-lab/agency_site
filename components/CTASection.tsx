@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, ChevronDown, Mail, MessageCircle } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle2, ChevronDown, Loader2, Mail, MessageCircle } from "lucide-react";
 
 export default function CTASection() {
   return (
@@ -23,7 +23,7 @@ export default function CTASection() {
               {[
                 { icon: Calendar, label: "Book a strategy call", text: "Free 30-minute project fit session" },
                 { icon: MessageCircle, label: "Message the team", text: "Fast answers before you commit" },
-                { icon: Mail, label: "Email", text: "hello@modulussoftware.com" },
+                { icon: Mail, label: "Email", text: "akibbhuiyan3544@gmail.com" },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
@@ -54,51 +54,110 @@ export default function CTASection() {
 }
 
 function ContactForm() {
+  const [status, setStatus] = useState<"idle"|"sending"|"success"|"error">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+  const [platform, setPlatform] = useState("");
+  const [budget, setBudget] = useState("");
+  const [customBudget, setCustomBudget] = useState("");
+
+  const finalBudget = budget === "Custom budget..." ? customBudget : budget;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    const fd = new FormData(e.currentTarget);
+    const name    = fd.get("name") as string;
+    const email   = fd.get("email") as string;
+    const message = fd.get("message") as string;
+
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      platform    ? `Platform: ${platform}`       : "",
+      finalBudget ? `Budget: ${finalBudget}`       : "",
+      "",
+      "Project Details:",
+      message,
+    ].filter(Boolean).join("\n");
+
+    const subject = encodeURIComponent(`New inquiry from ${name} — ${platform || "General"}`);
+    const bodyEnc = encodeURIComponent(body);
+
+    window.location.href = `mailto:akibbhuiyan3544@gmail.com?subject=${subject}&body=${bodyEnc}`;
+
+    formRef.current?.reset();
+    setPlatform("");
+    setBudget("");
+    setCustomBudget("");
+    setStatus("success");
+  };
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        alert("Message sent. We will be in touch within 2 business hours.");
-      }}
-      className="space-y-5"
-    >
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+      {status === "success" && (
+        <div className="flex items-center gap-3 rounded-lg border border-teal-300/25 bg-teal-300/8 p-4 text-sm text-teal-300">
+          <CheckCircle2 size={18} className="shrink-0" />
+          Message sent! We will reply within 2 business hours.
+        </div>
+      )}
+
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Full name">
-          <input type="text" required placeholder="John Smith" className="form-field" />
+          <input name="name" type="text" required placeholder="John Smith" className="form-field" />
         </Field>
         <Field label="Email address">
-          <input type="email" required placeholder="john@company.com" className="form-field" />
+          <input name="email" type="email" required placeholder="john@company.com" className="form-field" />
         </Field>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Platform">
           <CustomSelect
-            name="platform"
             placeholder="Select platform"
-            options={["Shopify", "WordPress", "Wix", "Squarespace", "Other"]}
+            options={["Shopify", "WordPress", "Wix", "Squarespace", "Custom Code", "SEO", "Website Maintenance", "Other"]}
+            value={platform}
+            onChange={setPlatform}
             required
           />
         </Field>
         <Field label="Budget range">
           <CustomSelect
-            name="budget"
             placeholder="Select budget"
-            options={["$1,000 - $3,000", "$3,000 - $7,000", "$7,000 - $15,000", "$15,000+"]}
+            options={["$1,000 - $3,000", "$3,000 - $7,000", "$7,000 - $15,000", "$15,000+", "Custom budget..."]}
+            value={budget}
+            onChange={setBudget}
           />
         </Field>
       </div>
 
+      {/* Custom budget text input */}
+      {budget === "Custom budget..." && (
+        <Field label="Enter your budget">
+          <input
+            type="text"
+            required
+            placeholder="e.g. $500, $2,500, negotiable..."
+            value={customBudget}
+            onChange={(e) => setCustomBudget(e.target.value)}
+            className="form-field"
+          />
+        </Field>
+      )}
+
       <Field label="Project details">
-        <textarea rows={5} placeholder="Tell us about your goals, timeline, and current website..." className="form-field resize-none" />
+        <textarea name="message" rows={5} required placeholder="Tell us about your goals, timeline, and current website..." className="form-field resize-none" />
       </Field>
 
       <button
         type="submit"
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-4 text-sm font-extrabold text-[#08090d] transition hover:bg-teal-200"
+        disabled={status === "sending"}
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-4 text-sm font-extrabold text-[#08090d] transition hover:bg-teal-200 disabled:opacity-60"
       >
-        Send message
-        <ArrowRight size={17} />
+        {status === "sending" ? (
+          <><Loader2 size={17} className="animate-spin" /> Sending…</>
+        ) : (
+          <>Send message <ArrowRight size={17} /></>
+        )}
       </button>
     </form>
   );
@@ -114,18 +173,19 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function CustomSelect({
-  name,
   placeholder,
   options,
+  value,
+  onChange,
   required = false,
 }: {
-  name: string;
   placeholder: string;
   options: string[];
+  value: string;
+  onChange: (v: string) => void;
   required?: boolean;
 }) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
 
   return (
     <div className="relative">
@@ -133,7 +193,6 @@ function CustomSelect({
         tabIndex={-1}
         aria-hidden="true"
         required={required}
-        name={name}
         value={value}
         onChange={() => undefined}
         className="pointer-events-none absolute h-px w-px opacity-0"
@@ -164,10 +223,7 @@ function CustomSelect({
               <button
                 key={option}
                 type="button"
-                onClick={() => {
-                  setValue(option);
-                  setOpen(false);
-                }}
+                onClick={() => { onChange(option); setOpen(false); }}
                 className={`block w-full px-4 py-3 text-left text-sm font-semibold transition ${
                   selected
                     ? "bg-teal-300 text-[#07100f]"

@@ -1,0 +1,39 @@
+/* design.css - Global design system */
+:root {
+  /* Color palette */
+  --color-primary: #00aa55; /* green accent */
+  --color-primary-dark: #008844;
+  --color-background: #0d0d14;
+  --color-surface: rgba(255,255,255,0.02);
+  --color-white: #ffffff;
+  --color-gray: #888;
+}
+
+/* Typography */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-white);
+}
+
+/* Utility classes */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-primary), #0a84ff);
+}
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 1rem;
+}
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+.neon-border {
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 10px rgba(0,170,85,0.4);
+  border-radius: 1rem;
+}
