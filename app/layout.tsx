@@ -8,12 +8,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PixelForge Studio | Premium CMS & Web Development Agency",
-  description: "Premium Shopify, WordPress, Wix & Squarespace development agency. We build high-converting CMS websites for modern businesses across the USA.",
-  keywords: "Shopify development, WordPress agency, Wix websites, Squarespace design, CMS development, web agency USA",
+  title: "MODULUS SOFTWARE | Professional App, Software & CMS Consulting",
+  description: "MODULUS SOFTWARE provides professional consulting, software development, app strategy, CMS websites, and premium web solutions for modern businesses.",
+  keywords: "MODULUS SOFTWARE, software consulting, app consulting, software development agency, CMS development, web development, Shopify development, WordPress agency",
   openGraph: {
-    title: "PixelForge Studio | Premium CMS Agency",
-    description: "We build high-converting CMS websites for modern businesses.",
+    title: "MODULUS SOFTWARE | App, Software & Web Consulting",
+    description: "Professional consulting and premium web development for apps, software, and CMS platforms.",
     type: "website",
   },
 };

@@ -27,7 +27,7 @@ export default function AboutSection() {
           </div>
           <div className="space-y-5 text-base leading-8 text-white/58">
             <p>
-              PixelForge is a focused CMS studio for businesses that need a polished website without a bloated process. We design the page architecture, build the CMS, clean up the details, and help your team launch with confidence.
+              MODULUS SOFTWARE is a focused consulting and development studio for businesses that need polished software, app strategy, and CMS websites without a bloated process. We design the page architecture, build the CMS, clean up the details, and help your team launch with confidence.
             </p>
             <p>
               Our work sits between strategy and production: sharper messaging, better hierarchy, reliable implementation, and a handoff your team can use.

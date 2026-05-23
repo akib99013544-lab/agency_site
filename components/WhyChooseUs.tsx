@@ -37,7 +37,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="section-kicker">Why PixelForge</p>
+            <p className="section-kicker">Why MODULUS SOFTWARE</p>
             <h2 className="section-title">A calmer way to ship a better website.</h2>
             <p className="section-copy mt-6 max-w-xl">
               We bring the same discipline to a five-page service site that we bring to a conversion-heavy ecommerce build: hierarchy, proof, speed, and maintainability.
@@ -94,7 +94,7 @@ export default function WhyChooseUs() {
               ))}
             </div>
             <p className="text-xl font-semibold leading-8 text-white">
-              "PixelForge turned a messy site into a clean sales tool. The new layout made our offer obvious and the CMS is finally easy to manage."
+              "MODULUS SOFTWARE turned a messy site into a clean sales tool. The new layout made our offer obvious and the CMS is finally easy to manage."
             </p>
             <div className="mt-7 flex items-center justify-between gap-4 border-t border-white/10 pt-5">
               <div>

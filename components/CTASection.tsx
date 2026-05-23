@@ -23,7 +23,7 @@ export default function CTASection() {
               {[
                 { icon: Calendar, label: "Book a strategy call", text: "Free 30-minute project fit session" },
                 { icon: MessageCircle, label: "Message the team", text: "Fast answers before you commit" },
-                { icon: Mail, label: "Email", text: "hello@pixelforgestudio.com" },
+                { icon: Mail, label: "Email", text: "hello@modulussoftware.com" },
               ].map((item) => {
                 const Icon = item.icon;
                 return (

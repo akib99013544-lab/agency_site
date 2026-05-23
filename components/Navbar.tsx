@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -35,22 +36,24 @@ export default function Navbar() {
         transition={{ duration: 0.45 }}
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
           scrolled
-            ? "border-white/10 bg-[#08090d]/88 py-3 backdrop-blur-xl"
-            : "border-transparent bg-transparent py-5"
+            ? "border-white/10 bg-[#08090d]/88 py-2 backdrop-blur-xl"
+            : "border-transparent bg-transparent py-4"
         }`}
       >
         <div className="mx-auto flex w-[min(1160px,calc(100%-2rem))] items-center justify-between">
           <button
             onClick={() => handleNavClick("#hero")}
-            className="flex items-center gap-3 text-left"
+            className="flex items-center text-left"
             aria-label="Go to top"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-[#08090d]">
-              <Zap size={18} fill="currentColor" />
-            </span>
-            <span className="text-lg font-bold tracking-tight">
-              Pixel<span className="text-teal-300">Forge</span>
-            </span>
+            <Image
+              src="/modulus-software-logo.png"
+              alt="MODULUS SOFTWARE logo"
+              width={260}
+              height={120}
+              priority
+              className="h-16 w-auto object-contain drop-shadow-[0_8px_24px_rgba(20,184,166,0.22)]"
+            />
           </button>
 
           <div className="hidden items-center gap-1 md:flex">

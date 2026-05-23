@@ -1,7 +1,7 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap } from "lucide-react";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -24,14 +24,16 @@ export default function LoadingScreen() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="relative flex items-center gap-3"
+            className="relative"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-white text-[#08090d]">
-              <Zap size={20} fill="currentColor" />
-            </span>
-            <span className="text-xl font-black text-white">
-              Pixel<span className="text-teal-300">Forge</span>
-            </span>
+            <Image
+              src="/modulus-software-logo.png"
+              alt="MODULUS SOFTWARE logo"
+              width={420}
+              height={240}
+              priority
+              className="h-40 w-auto object-contain drop-shadow-[0_18px_70px_rgba(20,184,166,0.28)]"
+            />
           </motion.div>
         </motion.div>
       )}

@@ -1,5 +1,6 @@
 "use client";
-import { ArrowRight, Code, Mail, MapPin, MessageSquare, Phone, Zap } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Code, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 
 const footerLinks = {
   Services: ["Shopify", "WordPress", "Wix", "Squarespace", "Redesigns", "SEO setup"],
@@ -13,19 +14,18 @@ export default function Footer() {
       <div className="section-inner py-12">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-[#08090d]">
-                <Zap size={18} fill="currentColor" />
-              </span>
-              <span className="text-lg font-bold">
-                Pixel<span className="text-teal-300">Forge</span>
-              </span>
-            </div>
+            <Image
+              src="/modulus-software-logo.png"
+              alt="MODULUS SOFTWARE logo"
+              width={320}
+              height={170}
+              className="h-28 w-auto object-contain drop-shadow-[0_12px_38px_rgba(20,184,166,0.18)]"
+            />
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/48">
-              Premium CMS development agency building polished, conversion-focused websites for modern businesses.
+              Professional software consulting and premium web development for modern businesses.
             </p>
             <div className="mt-6 space-y-3 text-sm text-white/48">
-              <p className="flex items-center gap-3"><Mail size={15} className="text-teal-300" /> hello@pixelforgestudio.com</p>
+              <p className="flex items-center gap-3"><Mail size={15} className="text-teal-300" /> hello@modulussoftware.com</p>
               <p className="flex items-center gap-3"><Phone size={15} className="text-teal-300" /> +1 (555) 123-4567</p>
               <p className="flex items-center gap-3"><MapPin size={15} className="text-teal-300" /> New York, NY - USA</p>
             </div>
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/34 md:flex-row md:items-center md:justify-between">
-          <p>Copyright 2026 PixelForge Studio. All rights reserved.</p>
+          <p>Copyright 2026 MODULUS SOFTWARE. All rights reserved.</p>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white/70">Privacy</a>
             <a href="#" className="hover:text-white/70">Terms</a>
