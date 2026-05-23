@@ -30,10 +30,10 @@ const channels = [
 ];
 
 const details = [
-  { icon: Phone, label: "+88 01842638473" },
-  { icon: Mail, label: "akibbhuiyan3544@gmail.com" },
-  { icon: MapPin, label: "USA" },
-  { icon: Clock, label: "24/7 — Always available" },
+  { icon: Phone, label: <span className="text-sm font-bold text-white">+8801842638473</span> },
+  { icon: Mail, label: <span className="text-sm font-bold text-white">akibbhuiyan3544@gmail.com</span> },
+  { icon: MapPin, label: <span className="text-sm font-bold text-white">USA</span> },
+  { icon: Clock, label: <span className="text-sm font-bold text-white">24/7 — Always available</span> },
 ];
 
 export default function ContactInfo() {

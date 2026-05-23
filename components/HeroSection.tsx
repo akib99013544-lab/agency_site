@@ -212,7 +212,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.76 }}
-            className="mt-12 grid max-w-lg grid-cols-3 gap-px overflow-hidden border border-white/[0.07] bg-white/[0.07]"
+            className="mt-6 grid max-w-lg grid-cols-3 gap-px overflow-hidden border border-white/[0.07] bg-white/[0.07]"
             style={{ borderRadius: 10 }}
           >
             {metrics.map((m) => (
@@ -428,26 +428,36 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                {/* Platform badges bento row */}
-                <div className="mt-4 grid grid-cols-4 gap-2">
-                  {["Shopify", "WordPress", "Custom Code", "SEO"].map((p, i) => (
+                {/* Service badges bento row */}
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  {[
+                    { label: "Shopify", color: "#14b8a6" },
+                    { label: "WordPress", color: "#3b82f6" },
+                    { label: "Wix", color: "#f59e0b" },
+                    { label: "Squarespace", color: "#a78bfa" },
+                    { label: "Custom Code", color: "#06b6d4" },
+                    { label: "Full Stack", color: "#8b5cf6" },
+                    { label: "SEO & Growth", color: "#10b981" },
+                    { label: "Maintenance", color: "#64748b" },
+                    { label: "Landing Pages", color: "#fb7185" },
+                  ].map((s, i) => (
                     <motion.div
-                      key={p}
+                      key={s.label}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ delay: 0.9 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                       onMouseEnter={() => setHoveredBadge(i)}
                       onMouseLeave={() => setHoveredBadge(null)}
-                      className="cursor-default rounded-lg border px-2 py-2.5 text-center text-[11px] font-black transition-all duration-250"
+                      className="cursor-default rounded-lg border px-2 py-2 text-center text-[10px] font-black transition-all duration-200"
                       style={{
-                        borderColor: hoveredBadge === i ? "rgba(20,184,166,0.55)" : "rgba(255,255,255,0.07)",
-                        background: hoveredBadge === i ? "rgba(20,184,166,0.08)" : "rgba(255,255,255,0.03)",
-                        color: hoveredBadge === i ? "#14b8a6" : "rgba(255,255,255,0.5)",
+                        borderColor: hoveredBadge === i ? `${s.color}55` : "rgba(255,255,255,0.07)",
+                        background: hoveredBadge === i ? `${s.color}12` : "rgba(255,255,255,0.03)",
+                        color: hoveredBadge === i ? s.color : "rgba(255,255,255,0.45)",
                         transform: hoveredBadge === i ? "translateY(-2px)" : "translateY(0)",
-                        boxShadow: hoveredBadge === i ? "0 4px 16px rgba(20,184,166,0.12)" : "none",
+                        boxShadow: hoveredBadge === i ? `0 4px 14px ${s.color}18` : "none",
                       }}
                     >
-                      {p}
+                      {s.label}
                     </motion.div>
                   ))}
                 </div>
